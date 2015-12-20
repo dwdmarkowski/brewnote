@@ -1,0 +1,24 @@
+{
+  "generator-jhipster": {
+    "baseName": "brewnote",
+    "packageName": "org.dmarkowski.brewnote",
+    "packageFolder": "org/dmarkowski/brewnote",
+    "authenticationType": "oauth2",
+    "hibernateCache": "ehcache",
+    "clusteredHttpSession": "no",
+    "websocket": "no",
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": "no",
+    "useSass": false,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "enableTranslation": false,
+    "enableSocialSignIn": false,
+    "rememberMeKey": "28b74db9c71b314cf583ae360f74287ffe328016",
+    "testFrameworks": [
+      "gatling"
+    ]
+  }
+}
