@@ -1,0 +1,74 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myRecipeLabel">Create or edit a Recipe</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="recipe.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="recipe.name"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_style">Style</label>
+            <input type="text" class="form-control" name="style" id="field_style"
+                    ng-model="recipe.style"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_date">Date</label>
+            <input type="datetime-local" class="form-control" name="date" id="field_date"
+                    ng-model="recipe.date"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_abv">Abv</label>
+            <input type="number" class="form-control" name="abv" id="field_abv"
+                    ng-model="recipe.abv"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_originalGravity">OriginalGravity</label>
+            <input type="number" class="form-control" name="originalGravity" id="field_originalGravity"
+                    ng-model="recipe.originalGravity"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_notes">Notes</label>
+            <input type="text" class="form-control" name="notes" id="field_notes"
+                    ng-model="recipe.notes"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_volume">Volume</label>
+            <input type="number" class="form-control" name="volume" id="field_volume"
+                    ng-model="recipe.volume"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label for="field_user">user</label>
+            <select class="form-control" id="field_user" name="user" ng-model="recipe.userId" ng-options="user.id as user.login for user in users">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

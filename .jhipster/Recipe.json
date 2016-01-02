@@ -1,0 +1,94 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "groupSharedRecipe",
+            "otherEntityName": "groupSharedRecipe",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "recipe"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "comment",
+            "otherEntityName": "comment",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "recipe"
+        },
+        {
+            "relationshipId": 4,
+            "relationshipName": "malt",
+            "otherEntityName": "malt",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "recipe"
+        },
+        {
+            "relationshipId": 5,
+            "relationshipName": "hop",
+            "otherEntityName": "hop",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "recipe"
+        },
+        {
+            "relationshipId": 6,
+            "relationshipName": "yeast",
+            "otherEntityName": "yeast",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "recipe"
+        },
+        {
+            "relationshipId": 7,
+            "relationshipName": "additional",
+            "otherEntityName": "additional",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "recipe"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "style",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "date",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "abv",
+            "fieldType": "Double"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "originalGravity",
+            "fieldType": "Double"
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "notes",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "volume",
+            "fieldType": "Float"
+        }
+    ],
+    "changelogDate": "20160102155938",
+    "dto": "mapstruct",
+    "pagination": "pagination"
+}
