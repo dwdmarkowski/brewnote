@@ -15,5 +15,6 @@
     <include file="classpath:config/liquibase/changelog/20160102170258_added_entity_Hop.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160102170346_added_entity_Yeast.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160102170442_added_entity_Additional.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160102170748_added_entity_Friendship.xml" relativeToChangelogFile="false"/>
     <!-- JHipster will add liquibase changelogs here -->
 </databaseChangeLog>
