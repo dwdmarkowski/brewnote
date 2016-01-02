@@ -1,0 +1,28 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "userGroup",
+            "otherEntityName": "userGroup",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "friendGroup"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "groupSharedRecipe",
+            "otherEntityName": "groupSharedRecipe",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "friendGroup"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20160102161746",
+    "dto": "mapstruct",
+    "pagination": "pagination"
+}
