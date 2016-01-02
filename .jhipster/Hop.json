@@ -1,0 +1,32 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "recipe",
+            "otherEntityName": "recipe",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "alfaAcids",
+            "fieldType": "Double"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "hopForm",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20160102170258",
+    "dto": "mapstruct",
+    "pagination": "pagination"
+}

@@ -1,0 +1,26 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "malt",
+            "otherEntityName": "malt",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "time",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "temperature",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20160102170134",
+    "dto": "mapstruct",
+    "pagination": "pagination"
+}

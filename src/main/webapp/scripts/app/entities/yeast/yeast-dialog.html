@@ -1,0 +1,50 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myYeastLabel">Create or edit a Yeast</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="yeast.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="yeast.name"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_temperature">Temperature</label>
+            <input type="number" class="form-control" name="temperature" id="field_temperature"
+                    ng-model="yeast.temperature"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_days">Days</label>
+            <input type="number" class="form-control" name="days" id="field_days"
+                    ng-model="yeast.days"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label for="field_recipe">recipe</label>
+            <select class="form-control" id="field_recipe" name="recipe" ng-model="yeast.recipeId" ng-options="recipe.id as recipe.name for recipe in recipes">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

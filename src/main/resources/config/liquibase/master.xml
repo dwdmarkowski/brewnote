@@ -10,5 +10,10 @@
     <include file="classpath:config/liquibase/changelog/20160102161746_added_entity_FriendGroup.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160102161859_added_entity_UserGroup.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160102165728_added_entity_GroupSharedRecipe.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160102170036_added_entity_Malt.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160102170134_added_entity_Mashing.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160102170258_added_entity_Hop.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160102170346_added_entity_Yeast.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160102170442_added_entity_Additional.xml" relativeToChangelogFile="false"/>
     <!-- JHipster will add liquibase changelogs here -->
 </databaseChangeLog>

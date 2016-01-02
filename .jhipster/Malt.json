@@ -1,0 +1,35 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "recipe",
+            "otherEntityName": "recipe",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "mashing",
+            "otherEntityName": "mashing",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "malt"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "amount",
+            "fieldType": "Double",
+            "fieldValidateRules": []
+        }
+    ],
+    "changelogDate": "20160102170036",
+    "dto": "mapstruct",
+    "pagination": "pagination"
+}
