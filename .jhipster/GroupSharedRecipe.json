@@ -1,0 +1,28 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "friendGroup",
+            "otherEntityName": "friendGroup",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "recipe",
+            "otherEntityName": "recipe",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "sharingDate",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20160102165728",
+    "dto": "mapstruct",
+    "pagination": "pagination"
+}
