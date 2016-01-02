@@ -25,18 +25,18 @@
             <column name="first_user_id" type="bigint"/>
             <column name="second_user_id" type="bigint"/>
         </createTable>
-        
+
         <addForeignKeyConstraint baseColumnNames="first_user_id"
                                  baseTableName="friendship"
                                  constraintName="fk_friendship_firstuser_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="jhi_user"/>
+                                 referencedTableName="user"/>
 
         <addForeignKeyConstraint baseColumnNames="second_user_id"
                                  baseTableName="friendship"
                                  constraintName="fk_friendship_seconduser_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="jhi_user"/>
+                                 referencedTableName="user"/>
 
     </changeSet>
 </databaseChangeLog>

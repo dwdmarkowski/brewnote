@@ -32,12 +32,12 @@
         </createTable>
         <dropDefaultValue tableName="recipe" columnName="date" columnDataType="datetime"/>
 
-        
+
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="recipe"
                                  constraintName="fk_recipe_user_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="jhi_user"/>
+                                 referencedTableName="user"/>
 
     </changeSet>
 </databaseChangeLog>
