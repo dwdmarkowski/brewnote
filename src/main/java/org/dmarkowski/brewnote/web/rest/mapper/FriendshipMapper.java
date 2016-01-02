@@ -30,12 +30,4 @@ public interface FriendshipMapper {
         return user;
     }
 
-    default User userFromId(Long id) {
-        if (id == null) {
-            return null;
-        }
-        User user = new User();
-        user.setId(id);
-        return user;
-    }
 }
