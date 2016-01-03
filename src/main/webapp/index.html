@@ -11,6 +11,8 @@
         <!-- bower:css -->
         <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.css" />
+        <link rel="stylesheet" href="bower_components/bootstrap-material-design/dist/css/ripples.css" />
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css assets/styles/main.css -->
@@ -21,7 +23,6 @@
         <!--[if lt IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div>
         <div ui-view="navbar" ng-cloak=""></div>
         <div class="container">
             <div class="well" ui-view="content"></div>
@@ -59,6 +60,10 @@
         <script src="bower_components/json3/lib/json3.js"></script>
         <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
         <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+        <script src="bower_components/arrive/src/arrive.js"></script>
+        <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+        <script src="bower_components/bootstrap-material-design/dist/js/material.js"></script>
+        <script src="bower_components/bootstrap-material-design/dist/js/ripples.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 

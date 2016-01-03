@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#/"><span>jhipster</span> <span class="navbar-version">v{{VERSION}}</span></a>
+            <a class="navbar-brand" href="#/"><span>brewnote</span></a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse" ng-switch="isAuthenticated()">
             <ul class="nav navbar-nav navbar-right">
@@ -17,8 +17,8 @@
                         <span class="hidden-sm">Home</span>
                     </a>
                 </li>
-                <li ui-sref-active="active" ng-switch-when="true" class="dropdown pointer">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                <li ui-sref-active="active" ng-switch-when="true" dropdown>
+                    <a dropdown-toggle href="">
                         <span>
                             <span class="glyphicon glyphicon-th-list"></span>
                             <span class="hidden-sm">
@@ -53,8 +53,8 @@
                         <!-- JHipster will add entities to the menu here -->
                     </ul>
                 </li>
-                <li ng-class="{active: $state.includes('account')}" class="dropdown pointer">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="" id="account-menu">
+                <li ng-class="{active: $state.includes('account')}" dropdown>
+                    <a dropdown-toggle href="" id="account-menu">
                         <span>
                             <span class="glyphicon glyphicon-user"></span>
                             <span class="hidden-sm">
@@ -76,8 +76,8 @@
                             &#xA0;<span>Register</span></a></li>
                     </ul>
                 </li>
-                <li ng-class="{active: $state.includes('admin')}"  ng-switch-when="true" has-authority="ROLE_ADMIN" class="dropdown pointer">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="" id="admin-menu">
+                <li ng-class="{active: $state.includes('admin')}"  ng-switch-when="true" has-authority="ROLE_ADMIN" dropdown>
+                    <a dropdown-toggle href="" id="admin-menu">
                         <span>
                             <span class="glyphicon glyphicon-tower"></span>
                             <span class="hidden-sm">Administration</span>
