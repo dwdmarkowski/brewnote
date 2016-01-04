@@ -17,10 +17,34 @@
                         <span class="hidden-sm">Strona główna</span>
                     </a>
                 </li>
-                <li ng-class="{active: $state.includes('account')}"  ng-switch-when="true" has-authority="ROLE_USER">
-                    <a ui-sref="myBatches" data-toggle="collapse" data-target=".navbar-collapse.in">
+                <li ng-class="{active: $state.includes('recipe')}"  ng-switch-when="true" has-authority="ROLE_USER">
+                    <a ui-sref="recipe" data-toggle="collapse" data-target=".navbar-collapse.in">
                         <span class="glyphicon glyphicon-book"></span>
                         <span class="hidden-sm">Moje warki</span>
+                    </a>
+                </li>
+                <li ng-class="{active: $state.includes('friendship')}"  ng-switch-when="true" has-authority="ROLE_USER">
+                    <a ui-sref="friendship" data-toggle="collapse" data-target=".navbar-collapse.in">
+                        <span class="glyphicon glyphicon-heart"></span>
+                        <span class="hidden-sm">Znajomi</span>
+                    </a>
+                </li>
+                <li ng-class="{active: $state.includes('account')}"  ng-switch-when="true" has-authority="ROLE_USER">
+                    <a ui-sref="recipe" data-toggle="collapse" data-target=".navbar-collapse.in">
+                        <span class="glyphicon glyphicon-glass"></span>
+                        <span class="hidden-sm">Grupy</span>
+                    </a>
+                </li>
+                <li ng-class="{active: $state.includes('calculators')}">
+                    <a ui-sref="recipe" data-toggle="collapse" data-target=".navbar-collapse.in">
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                        <span class="hidden-sm">Kalkulatory</span>
+                    </a>
+                </li>
+                <li ng-class="{active: $state.includes('account')}"  ng-switch-when="true" has-authority="ROLE_USER">
+                    <a ui-sref="recipe" data-toggle="collapse" data-target=".navbar-collapse.in">
+                        <span class="glyphicon glyphicon-envelope"></span>
+                        <span class="hidden-sm">Powiadomienia</span>
                     </a>
                 </li>
                 <li ng-class="{active: $state.includes('admin')}"  ng-switch-when="true" has-authority="ROLE_ADMIN" dropdown>
