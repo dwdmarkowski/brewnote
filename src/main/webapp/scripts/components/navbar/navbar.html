@@ -17,6 +17,12 @@
                         <span class="hidden-sm">Strona główna</span>
                     </a>
                 </li>
+                <li ng-class="{active: $state.includes('account')}"  ng-switch-when="true" has-authority="ROLE_USER">
+                    <a ui-sref="myBatches" data-toggle="collapse" data-target=".navbar-collapse.in">
+                        <span class="glyphicon glyphicon-book"></span>
+                        <span class="hidden-sm">Moje warki</span>
+                    </a>
+                </li>
                 <li ng-class="{active: $state.includes('admin')}"  ng-switch-when="true" has-authority="ROLE_ADMIN" dropdown>
                     <a dropdown-toggle href="">
                         <span>
