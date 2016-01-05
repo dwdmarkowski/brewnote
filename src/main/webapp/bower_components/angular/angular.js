@@ -28578,13 +28578,13 @@ $provide.value("$locale", {
       "PM"
     ],
     "DAY": [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
+        "Niedziela",
+        "Poniedziałek",
+        "Wtorek",
+        "Środa",
+        "Czwartek",
+        "Piątek",
+        "Sobota"
     ],
     "ERANAMES": [
       "Before Christ",
@@ -28596,18 +28596,18 @@ $provide.value("$locale", {
     ],
     "FIRSTDAYOFWEEK": 6,
     "MONTH": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
+        "Styczeń",
+        "Luty",
+        "Marzec",
+        "Kwiecień",
+        "Maj",
+        "Czerwiec",
+        "Lipiec",
+        "Sierpień",
+        "Wrzesień",
+        "Październik",
+        "Listopad",
+        "Grudzień"
     ],
     "SHORTDAY": [
       "Sun",

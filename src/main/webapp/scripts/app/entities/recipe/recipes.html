@@ -18,10 +18,6 @@
                     <th>Nazwa</th>
                     <th>Styl</th>
                     <th>Data warzenia</th>
-                    <th>Zawartość alkoholu</th>
-                    <th>Ekstrakt początkowy</th>
-                    <th>Uwagi</th>
-                    <th>Objętość warki</th>
                     <th></th>
                 </tr>
             </thead>
@@ -29,11 +25,7 @@
                 <tr ng-repeat="recipe in recipes track by recipe.id">
                     <td>{{recipe.name}}</td>
                     <td>{{recipe.style}}</td>
-                    <td>{{recipe.date | date:'medium'}}</td>
-                    <td>{{recipe.abv}}</td>
-                    <td>{{recipe.originalGravity}}</td>
-                    <td>{{recipe.notes}}</td>
-                    <td>{{recipe.volume}}</td>
+                    <td>{{recipe.date | date:'fullDate'}}</td>
                     <td>
                         <button type="submit"
                                 ui-sref="recipe.detail({id:recipe.id})"

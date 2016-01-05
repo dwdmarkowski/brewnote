@@ -1,18 +1,12 @@
 
 <div>
-    <h2><span>Recipe</span> {{recipe.id}}</h2>
+    <h2><span>Przepis nr</span> {{recipe.id}}</h2>
     <div class="table-responsive">
         <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Field</th>
-                <th>Value</th>
-            </tr>
-            </thead>
             <tbody>
             <tr>
                 <td>
-                    <span>Name</span>
+                    <span>Nazwa</span>
                 </td>
                 <td>
                     <span class="form-control-static">{{recipe.name}}</span>
@@ -20,7 +14,7 @@
             </tr>
             <tr>
                 <td>
-                    <span>Style</span>
+                    <span>Styl</span>
                 </td>
                 <td>
                     <span class="form-control-static">{{recipe.style}}</span>
@@ -28,7 +22,7 @@
             </tr>
             <tr>
                 <td>
-                    <span>Date</span>
+                    <span>Data warzenia</span>
                 </td>
                 <td>
                     <span class="form-control-static">{{recipe.date | date:'medium'}}</span>
@@ -36,7 +30,7 @@
             </tr>
             <tr>
                 <td>
-                    <span>Abv</span>
+                    <span>Zawartość alkoholu</span>
                 </td>
                 <td>
                     <span class="form-control-static">{{recipe.abv}}</span>
@@ -44,7 +38,7 @@
             </tr>
             <tr>
                 <td>
-                    <span>OriginalGravity</span>
+                    <span>Ekstrakt początkowy</span>
                 </td>
                 <td>
                     <span class="form-control-static">{{recipe.originalGravity}}</span>
@@ -52,7 +46,7 @@
             </tr>
             <tr>
                 <td>
-                    <span>Notes</span>
+                    <span>Uwagi</span>
                 </td>
                 <td>
                     <span class="form-control-static">{{recipe.notes}}</span>
@@ -60,7 +54,7 @@
             </tr>
             <tr>
                 <td>
-                    <span>Volume</span>
+                    <span>Objętość warki</span>
                 </td>
                 <td>
                     <span class="form-control-static">{{recipe.volume}}</span>
@@ -68,7 +62,7 @@
             </tr>
             <tr>
                 <td>
-                    <span>user</span>
+                    <span>Użytkownik</span>
                 </td>
                 <td>
                     {{recipe.userLogin}}
@@ -81,6 +75,6 @@
     <button type="submit"
             onclick="window.history.back()"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Wróć</span>
     </button>
 </div>

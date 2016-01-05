@@ -3,6 +3,8 @@ package org.dmarkowski.brewnote.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import org.dmarkowski.brewnote.domain.Recipe;
 import org.dmarkowski.brewnote.repository.RecipeRepository;
+import org.dmarkowski.brewnote.repository.UserRepository;
+import org.dmarkowski.brewnote.security.SecurityUtils;
 import org.dmarkowski.brewnote.web.rest.util.HeaderUtil;
 import org.dmarkowski.brewnote.web.rest.util.PaginationUtil;
 import org.dmarkowski.brewnote.web.rest.dto.RecipeDTO;
@@ -15,6 +17,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,6 +44,9 @@ public class RecipeResource {
     @Inject
     private RecipeMapper recipeMapper;
 
+    @Inject
+    private UserRepository userRepository;
+
     /**
      * POST  /recipes -> Create a new recipe.
      */
@@ -53,6 +59,7 @@ public class RecipeResource {
         if (recipeDTO.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new recipe cannot already have an ID").body(null);
         }
+        recipeDTO.setUserId(userRepository.findOneByLogin(SecurityUtils.getCurrentUser().getUsername()).get().getId());
         Recipe recipe = recipeMapper.recipeDTOToRecipe(recipeDTO);
         Recipe result = recipeRepository.save(recipe);
         return ResponseEntity.created(new URI("/api/recipes/" + result.getId()))
