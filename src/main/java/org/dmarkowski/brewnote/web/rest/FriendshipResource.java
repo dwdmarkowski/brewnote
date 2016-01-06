@@ -2,7 +2,10 @@ package org.dmarkowski.brewnote.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import org.dmarkowski.brewnote.domain.Friendship;
+import org.dmarkowski.brewnote.enums.FriendshipStatusE;
 import org.dmarkowski.brewnote.repository.FriendshipRepository;
+import org.dmarkowski.brewnote.repository.UserRepository;
+import org.dmarkowski.brewnote.security.SecurityUtils;
 import org.dmarkowski.brewnote.web.rest.util.HeaderUtil;
 import org.dmarkowski.brewnote.web.rest.util.PaginationUtil;
 import org.dmarkowski.brewnote.web.rest.dto.FriendshipDTO;
@@ -41,6 +44,8 @@ public class FriendshipResource {
     @Inject
     private FriendshipMapper friendshipMapper;
 
+    @Inject
+    private UserRepository userRepository;
     /**
      * POST  /friendships -> Create a new friendship.
      */
@@ -53,6 +58,8 @@ public class FriendshipResource {
         if (friendshipDTO.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new friendship cannot already have an ID").body(null);
         }
+        friendshipDTO.setFirstUserId(userRepository.findOneByLogin(SecurityUtils.getCurrentUser().getUsername()).get().getId());
+        friendshipDTO.setStatus(FriendshipStatusE.INVITATION);
         Friendship friendship = friendshipMapper.friendshipDTOToFriendship(friendshipDTO);
         Friendship result = friendshipRepository.save(friendship);
         return ResponseEntity.created(new URI("/api/friendships/" + result.getId()))
@@ -89,11 +96,20 @@ public class FriendshipResource {
     @Transactional(readOnly = true)
     public ResponseEntity<List<FriendshipDTO>> getAllFriendships(Pageable pageable)
         throws URISyntaxException {
-        Page<Friendship> page = friendshipRepository.findAll(pageable);
+        Page<Friendship> page = friendshipRepository.findInvitationsByFirstUserIsCurrentUser(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/friendships");
-        return new ResponseEntity<>(page.getContent().stream()
+        List<FriendshipDTO> friendships = page.getContent().stream()
             .map(friendshipMapper::friendshipToFriendshipDTO)
-            .collect(Collectors.toCollection(LinkedList::new)), headers, HttpStatus.OK);
+            .collect(Collectors.toCollection(LinkedList::new));
+        friendships.forEach(friendshipDTO -> {
+            if(friendshipDTO.getSecondUserLogin().equals(SecurityUtils.getCurrentUser().getUsername())) {
+                friendshipDTO.setSecondUserLogin(friendshipDTO.getFirstUserLogin());
+                friendshipDTO.setSecondUserId(friendshipDTO.getFirstUserId());
+                friendshipDTO.setFirstUserLogin(SecurityUtils.getCurrentUser().getUsername());
+                friendshipDTO.setFirstUserId(userRepository.findOneByLogin(SecurityUtils.getCurrentUser().getUsername()).get().getId());
+            }
+        });
+        return new ResponseEntity<>(friendships, headers, HttpStatus.OK);
     }
 
     /**

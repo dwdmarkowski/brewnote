@@ -96,7 +96,7 @@ public class RecipeResource {
     @Transactional(readOnly = true)
     public ResponseEntity<List<RecipeDTO>> getAllRecipes(Pageable pageable)
         throws URISyntaxException {
-        Page<Recipe> page = recipeRepository.findAll(pageable);
+        Page<Recipe> page = recipeRepository.findByUserIsCurrentUser(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/recipes");
         return new ResponseEntity<>(page.getContent().stream()
             .map(recipeMapper::recipeToRecipeDTO)

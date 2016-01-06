@@ -4,30 +4,12 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="clear()">&times;</button>
-        <h4 class="modal-title" id="myFriendshipLabel">Create or edit a Friendship</h4>
+        <h4 class="modal-title" id="myFriendshipLabel">Dodaj znajomego</h4>
     </div>
     <div class="modal-body">
         <jh-alert-error></jh-alert-error>
         <div class="form-group">
-            <label for="id">ID</label>
-            <input type="text" class="form-control" id="id" name="id"
-                    ng-model="friendship.id" readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="field_status">Status</label>
-            <input type="text" class="form-control" name="status" id="field_status"
-                    ng-model="friendship.status"
-                     />
-        </div>
-
-        <div class="form-group">
-            <label for="field_firstUser">firstUser</label>
-            <select class="form-control" id="field_firstUser" name="firstUser" ng-model="friendship.firstUserId" ng-options="user.id as user.login for user in users">
-                <option value=""></option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="field_secondUser">secondUser</label>
+            <label for="field_secondUser">login znajomego</label>
             <select class="form-control" id="field_secondUser" name="secondUser" ng-model="friendship.secondUserId" ng-options="user.id as user.login for user in users">
                 <option value=""></option>
             </select>
@@ -35,10 +17,10 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Anuluj</span>
         </button>
         <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Wyślij zaproszenie</span>
         </button>
     </div>
 </form>
