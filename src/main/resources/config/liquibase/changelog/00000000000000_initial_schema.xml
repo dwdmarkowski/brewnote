@@ -32,7 +32,7 @@
             <column name="email" type="varchar(100)">
                 <constraints unique="true"/>
             </column>
-            <column name="activated" type="boolean" valueBoolean="false">
+            <column name="activated" type="boolean">
                 <constraints nullable="false"/>
             </column>
             <column name="lang_key" type="varchar(5)"/>

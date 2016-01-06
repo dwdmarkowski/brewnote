@@ -1,39 +1,29 @@
 <div>
-    <h2>Znajomi</h2>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <button class="btn btn-primary" ui-sref="friendship.new">
-                    <span class="glyphicon glyphicon-flash"></span> <span>Dodaj znajomego</span>
-                </button>
-            </div>
-        </div>
-    </div>
+    <h2>Zaproszenia do znajomych</h2>
 
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Znajomy</th>
+                    <th>Zaproszenia</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="friendship in friendships track by friendship.id">
-                    <td>{{friendship.status == "Invitation" ? "Wysłane zaproszenie" : "Znajomy"}}</td>
                     <td>
-                        {{friendship.secondUserLogin}}
+                        {{friendship.firstUserLogin}}
                     </td>
                     <td>
                         <button type="submit"
                                 ui-sref="friendship.detail({id:friendship.id})"
                                 class="btn btn-info btn-sm">
-                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> Zobacz profil</span>
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> Akceptuj</span>
                         </button>
                         <button type="submit"
                                 ui-sref="friendship.delete({id:friendship.id})"
                                 class="btn btn-danger btn-sm">
-                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> {{friendship.status == "Invitation" ? "Cofnij zaproszenie" : "Usuń znajomego"}}</span>
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Odrzuć</span>
                         </button>
                     </td>
                 </tr>

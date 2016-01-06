@@ -19,6 +19,22 @@ angular.module('brewnoteApp')
                 resolve: {
                 }
             })
+            .state('notifications', {
+                parent: 'entity',
+                url: '/friendshipNotifications',
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'Friendships'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/entities/friendship/friendship-notifications.html',
+                        controller: 'FriendshipNotificationsController'
+                    }
+                },
+                resolve: {
+                }
+            })
             .state('friendship.detail', {
                 parent: 'entity',
                 url: '/friendship/{id}',

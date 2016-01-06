@@ -22,7 +22,7 @@ public interface FriendshipRepository extends JpaRepository<Friendship,Long> {
     @Query("select friendship " +
            "from Friendship friendship " +
            "where friendship.secondUser.login = ?#{principal.username} and friendship.status = 'Invitation'")
-    Page<Friendship> findInvitationsSendToMe(Pageable pageable);
+    Page<Friendship> findInvitationsSentToMe(Pageable pageable);
 
     @Query("select friendship from Friendship friendship where friendship.secondUser.login = ?#{principal.username}")
     List<Friendship> findBySecondUserIsCurrentUser();

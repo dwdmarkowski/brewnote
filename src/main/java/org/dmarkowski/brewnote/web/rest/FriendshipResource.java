@@ -92,9 +92,9 @@ public class FriendshipResource {
     @RequestMapping(value = "/friendships",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
-    @Transactional(readOnly = true)
-    public ResponseEntity<List<FriendshipDTO>> getAllFriendships(Pageable pageable)
+         @Timed
+         @Transactional(readOnly = true)
+         public ResponseEntity<List<FriendshipDTO>> getAllFriendships(Pageable pageable)
         throws URISyntaxException {
         Page<Friendship> page = friendshipRepository.findInvitationsByFirstUserIsCurrentUser(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/friendships");
@@ -109,6 +109,21 @@ public class FriendshipResource {
                 friendshipDTO.setFirstUserId(userRepository.findOneByLogin(SecurityUtils.getCurrentUser().getUsername()).get().getId());
             }
         });
+        return new ResponseEntity<>(friendships, headers, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/friendshipNotifications",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    @Transactional(readOnly = true)
+    public ResponseEntity<List<FriendshipDTO>> getAllFriendhsipNotifications(Pageable pageable)
+        throws URISyntaxException {
+        Page<Friendship> page = friendshipRepository.findInvitationsSentToMe(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/friendships");
+        List<FriendshipDTO> friendships = page.getContent().stream()
+            .map(friendshipMapper::friendshipToFriendshipDTO)
+            .collect(Collectors.toCollection(LinkedList::new));
         return new ResponseEntity<>(friendships, headers, HttpStatus.OK);
     }
 
