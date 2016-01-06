@@ -1,0 +1,40 @@
+
+<div>
+    <h3><span>Użytkownik</span> {{user.login}}</h3>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tbody>
+            <tr>
+                <td>
+                    <span>E-mail</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{user.email}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Imię</span>
+                </td>
+                <td>
+                    {{user.firstName}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Nazwisko</span>
+                </td>
+                <td>
+                    {{user.lastName}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Wróć</span>
+    </button>
+</div>

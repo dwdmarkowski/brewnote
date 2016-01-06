@@ -125,5 +125,23 @@ angular.module('brewnoteApp')
                         $state.go('^');
                     })
                 }]
+            }).state('friendship.userDetail', {
+                parent: 'entity',
+                url: '/friendship/userDetail/{login}',
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'Friendship'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/entities/friendship/friendship-user-detail.html',
+                        controller: 'FriendshipUserDetailController'
+                    }
+                },
+                resolve: {
+                    entity: ['$stateParams', 'User', function($stateParams, User) {
+                        return User.get({login : $stateParams.login});
+                    }]
+                }
             });
     });
