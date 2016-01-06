@@ -27,4 +27,5 @@ public interface FriendshipRepository extends JpaRepository<Friendship,Long> {
     @Query("select friendship from Friendship friendship where friendship.secondUser.login = ?#{principal.username}")
     List<Friendship> findBySecondUserIsCurrentUser();
 
+    
 }

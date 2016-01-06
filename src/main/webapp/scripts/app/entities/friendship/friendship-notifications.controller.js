@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('brewnoteApp')
-    .controller('FriendshipNotificationsController', function ($scope, $state, $modal, Notifications, ParseLinks) {
+    .controller('FriendshipNotificationsController', function ($scope, $http, Notifications, ParseLinks) {
 
         $scope.friendships = [];
         $scope.page = 0;
@@ -11,22 +11,10 @@ angular.module('brewnoteApp')
                 $scope.friendships = result;
             });
         };
-        $scope.loadPage = function(page) {
-            $scope.page = page;
-            $scope.loadAll();
+        $scope.acceptInvitation = function(id) {
+            $http.put('/api/friendships/accept/' + id).then(function(result){
+                $scope.loadAll();
+            });
         };
         $scope.loadAll();
-
-
-        $scope.refresh = function () {
-            $scope.loadAll();
-            $scope.clear();
-        };
-
-        $scope.clear = function () {
-            $scope.friendship = {
-                status: null,
-                id: null
-            };
-        };
     });
