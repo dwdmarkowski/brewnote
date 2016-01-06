@@ -16,5 +16,10 @@ angular.module('brewnoteApp')
                 $scope.loadAll();
             });
         };
+        $scope.rejectInvitation = function(id) {
+            $http.put('/api/friendships/reject/' + id).then(function(result){
+                $scope.loadAll();
+            });
+        };
         $scope.loadAll();
     });

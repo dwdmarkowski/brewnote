@@ -21,8 +21,8 @@
                             <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> Akceptuj</span>
                         </button>
                         <button type="submit"
-                                ui-sref="friendship.delete({id:friendship.id})"
-                                class="btn btn-danger btn-sm">
+                                class="btn btn-danger btn-sm"
+                                ng-click="rejectInvitation(friendship.id)">
                             <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Odrzuć</span>
                         </button>
                     </td>

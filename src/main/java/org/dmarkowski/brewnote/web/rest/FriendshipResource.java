@@ -85,6 +85,23 @@ public class FriendshipResource {
     }
 
     /**
+     * PUT  /friendships -> Updates an existing friendship.
+     */
+    @RequestMapping(value = "/friendships/reject/{id}",
+        method = RequestMethod.PUT,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<FriendshipDTO> updateFriendshipReject(@PathVariable Long id) throws URISyntaxException {
+        log.debug("REST request to accept Friendship : {}");
+        Friendship friendship = friendshipRepository.findOne(id);
+        friendship.setStatus(FriendshipStatusE.REJECTED);
+        Friendship result = friendshipRepository.save(friendship);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert("friendship", id.toString()))
+            .body(friendshipMapper.friendshipToFriendshipDTO(result));
+    }
+
+    /**
      * GET  /friendships -> get all the friendships.
      */
     @RequestMapping(value = "/friendships",
