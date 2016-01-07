@@ -61,10 +61,15 @@ public class FriendshipResource {
         friendshipDTO.setFirstUserId(userRepository.findOneByLogin(SecurityUtils.getCurrentUser().getUsername()).get().getId());
         friendshipDTO.setStatus(FriendshipStatusE.INVITATION);
         Friendship friendship = friendshipMapper.friendshipDTOToFriendship(friendshipDTO);
-        Friendship result = friendshipRepository.save(friendship);
-        return ResponseEntity.created(new URI("/api/friendships/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert("friendship", result.getId().toString()))
-            .body(friendshipMapper.friendshipToFriendshipDTO(result));
+        Friendship result;
+        if(friendshipRepository.findExistingInvitationWithStatusAcceptedOrWaiting(friendshipDTO.getFirstUserId(), friendshipDTO.getSecondUserId()) == null){
+            result = friendshipRepository.save(friendship);
+        } else {
+            result = null;
+        }
+        return ResponseEntity.created(new URI("/api/friendships/"))
+            .headers(HeaderUtil.createEntityCreationAlert("friendship", result != null ? result.getId().toString() : null))
+            .body(result != null ? friendshipMapper.friendshipToFriendshipDTO(result) : null);
     }
 
     /**

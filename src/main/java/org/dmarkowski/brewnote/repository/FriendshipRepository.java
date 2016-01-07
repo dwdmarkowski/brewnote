@@ -2,9 +2,11 @@ package org.dmarkowski.brewnote.repository;
 
 import org.dmarkowski.brewnote.domain.Friendship;
 
+import org.dmarkowski.brewnote.web.rest.dto.FriendshipDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -27,5 +29,9 @@ public interface FriendshipRepository extends JpaRepository<Friendship,Long> {
     @Query("select friendship from Friendship friendship where friendship.secondUser.login = ?#{principal.username}")
     List<Friendship> findBySecondUserIsCurrentUser();
 
-    
+    @Query("select friendship " +
+           "from Friendship friendship " +
+           "where (friendship.firstUser.id =:firstUserId and friendship.secondUser.id =:secondUserId and (friendship.status = 'Invitation' or friendship.status = 'Accepted')) " +
+           "or (friendship.firstUser.id =:secondUserId and friendship.secondUser.id =:firstUserId and (friendship.status = 'Invitation' or friendship.status = 'Accepted'))")
+    Friendship findExistingInvitationWithStatusAcceptedOrWaiting(@Param("firstUserId") Long firstUserId, @Param("secondUserId") Long secondUserId);
 }

@@ -16,7 +16,7 @@ public class HeaderUtil {
     }
 
     public static HttpHeaders createEntityCreationAlert(String entityName, String param) {
-        return createAlert("A new " + entityName + " is created with identifier " + param, param);
+        return param != null ? createAlert("Nowe zaproszenie zostało wysłane ", param) : createAlert("Już istnieje takie zaproszenie", param);
     }
 
     public static HttpHeaders createEntityUpdateAlert(String entityName, String param) {
@@ -26,4 +26,5 @@ public class HeaderUtil {
     public static HttpHeaders createEntityDeletionAlert(String entityName, String param) {
         return createAlert("A " + entityName + " is deleted with identifier " + param, param);
     }
+
 }
