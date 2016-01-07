@@ -17,7 +17,7 @@
                         <span class="hidden-sm">Strona główna</span>
                     </a>
                 </li>
-                <li ng-class="{active: $state.includes('recipe')}" dropdown>
+                <li ng-class="{active: $state.includes('recipe')}" ng-switch-when="true" has-authority="ROLE_USER" dropdown>
                     <a dropdown-toggle href="" id="recipe-menu">
                         <span>
                             <span class="glyphicon glyphicon-book"></span>
@@ -28,11 +28,11 @@
                         </span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="recipe" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-star"></span>
+                        <li ui-sref-active="active"><a ui-sref="recipe" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-star"></span>
                             &#xA0;<span>Moje przepisy</span></a></li>
-                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="recipee" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-eye-open"></span>
+                        <li ui-sref-active="active"><a ui-sref="recipee" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-eye-open"></span>
                             &#xA0;<span>Przepisy znajomych</span></a></li>
-                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="recipeee" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-globe"></span>
+                        <li ui-sref-active="active"><a ui-sref="recipeee" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-globe"></span>
                             &#xA0;<span>Publiczne przepisy</span></a></li>
                     </ul>
                 </li>
