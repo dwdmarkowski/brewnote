@@ -85,7 +85,6 @@ public class FriendshipResource {
         friendship.setStatus(FriendshipStatusE.ACCEPTED);
         Friendship result = friendshipRepository.save(friendship);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert("friendship", id.toString()))
             .body(friendshipMapper.friendshipToFriendshipDTO(result));
     }
 
@@ -174,6 +173,6 @@ public class FriendshipResource {
     public ResponseEntity<Void> deleteFriendship(@PathVariable Long id) {
         log.debug("REST request to delete Friendship : {}", id);
         friendshipRepository.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("friendship", id.toString())).build();
+        return ResponseEntity.ok().build();
     }
 }

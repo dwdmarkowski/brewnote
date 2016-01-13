@@ -138,6 +138,20 @@ public class UserResource {
         return new ResponseEntity<>(managedUserDTOs, headers, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/availableFriendships",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    @Transactional(readOnly = true)
+    public ResponseEntity<List<ManagedUserDTO>> getAllNonFriendsUsers()
+        throws URISyntaxException {
+        List<User> avaiableFriendships = userRepository.findAvailableFriendships();
+        List<ManagedUserDTO> managedUserDTOs = avaiableFriendships.stream()
+            .map(user -> new ManagedUserDTO(user))
+            .collect(Collectors.toList());
+        return new ResponseEntity<>(managedUserDTOs, HttpStatus.OK);
+    }
+
     /**
      * GET  /users/:login -> get the "login" user.
      */

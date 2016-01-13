@@ -16,7 +16,7 @@ public class HeaderUtil {
     }
 
     public static HttpHeaders createEntityCreationAlert(String entityName, String param) {
-        return param != null ? createAlert("Nowe zaproszenie zostało wysłane ", param) : createAlert("Już istnieje takie zaproszenie", param);
+        return param != null ? createAlert("Utworzono nowe zaproszenie ", param) : createAlert("Istnieje takie zaproszenie", param);
     }
 
     public static HttpHeaders createEntityUpdateAlert(String entityName, String param) {

@@ -13,4 +13,8 @@ angular.module('brewnoteApp')
                 },
                 'update': { method:'PUT' }
             });
+        }).factory('AvailableFriendships', function ($resource) {
+        return $resource('api/availableFriendships/', {}, {
+            'query': {method: 'GET', isArray: true}
         });
+    });

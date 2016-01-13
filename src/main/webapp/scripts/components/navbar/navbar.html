@@ -17,7 +17,7 @@
                         <span class="hidden-sm">Strona główna</span>
                     </a>
                 </li>
-                <li ng-class="{active: $state.includes('recipe')}" ng-switch-when="true" has-authority="ROLE_USER" dropdown>
+                <li ng-class="{active: $state.includes('recipe') || $state.includes('friendsRecipes') || $state.includes('publicRecipe')}" ng-switch-when="true" has-authority="ROLE_USER" dropdown>
                     <a dropdown-toggle href="" id="recipe-menu">
                         <span>
                             <span class="glyphicon glyphicon-book"></span>

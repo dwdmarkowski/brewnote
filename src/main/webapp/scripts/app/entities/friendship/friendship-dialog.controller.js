@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('brewnoteApp').controller('FriendshipDialogController',
-    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Friendship', 'User',
-        function($scope, $stateParams, $modalInstance, entity, Friendship, User) {
+    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Friendship', 'User', 'AvailableFriendships',
+        function($scope, $stateParams, $modalInstance, entity, Friendship, User, AvailableFriendships) {
 
         $scope.friendship = entity;
-        $scope.users = User.query();
+        $scope.users = AvailableFriendships.query();
         $scope.load = function(id) {
             Friendship.get({id : id}, function(result) {
                 $scope.friendship = result;

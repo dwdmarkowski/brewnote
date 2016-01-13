@@ -26,6 +26,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findOneById(Long userId);
 
+    @Query("select user from User user where user.login != ?#{principal.username}")
+    List<User> findAvailableFriendships();
+
     @Override
     void delete(User t);
 
