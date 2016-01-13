@@ -18,6 +18,21 @@ angular.module('brewnoteApp')
                 },
                 resolve: {
                 }
+            }).state('publicRecipe', {
+                parent: 'entity',
+                url: '/publicRecipes',
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'PublicRecipes'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/entities/recipe/public-recipes.html',
+                        controller: 'PublicRecipeController'
+                    }
+                },
+                resolve: {
+                }
             })
             .state('recipe.detail', {
                 parent: 'entity',
@@ -59,7 +74,8 @@ angular.module('brewnoteApp')
                                     originalGravity: null,
                                     notes: null,
                                     volume: null,
-                                    id: null
+                                    id: null,
+                                    visibility: null
                                 };
                             }
                         }

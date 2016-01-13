@@ -29,6 +29,7 @@
             <column name="notes" type="varchar(255)"/>
             <column name="volume" type="${floatType}"/>
             <column name="user_id" type="bigint"/>
+            <column name="visibility" type="varchar(255)"/>
         </createTable>
         <dropDefaultValue tableName="recipe" columnName="date" columnDataType="datetime"/>
 

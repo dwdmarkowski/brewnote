@@ -32,6 +32,8 @@ public class RecipeDTO implements Serializable {
 
     private String userLogin;
 
+    private String visibility;
+
     public Long getId() {
         return id;
     }
@@ -110,6 +112,14 @@ public class RecipeDTO implements Serializable {
 
     public void setUserLogin(String userLogin) {
         this.userLogin = userLogin;
+    }
+
+    public String getVisibility() {
+        return visibility;
+    }
+
+    public void setVisibility(String visibility) {
+        this.visibility = visibility;
     }
 
     @Override

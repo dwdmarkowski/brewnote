@@ -103,6 +103,20 @@ public class RecipeResource {
             .collect(Collectors.toCollection(LinkedList::new)), headers, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/publicRecipes",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    @Transactional(readOnly = true)
+    public ResponseEntity<List<RecipeDTO>> getAllPublicRecipes(Pageable pageable)
+        throws URISyntaxException {
+        Page<Recipe> page = recipeRepository.findAllPublicRecipes(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/publicRecipes");
+        return new ResponseEntity<>(page.getContent().stream()
+            .map(recipeMapper::recipeToRecipeDTO)
+            .collect(Collectors.toCollection(LinkedList::new)), headers, HttpStatus.OK);
+    }
+
     /**
      * GET  /recipes/:id -> get the "id" recipe.
      */

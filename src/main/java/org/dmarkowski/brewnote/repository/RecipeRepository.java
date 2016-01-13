@@ -15,4 +15,7 @@ public interface RecipeRepository extends JpaRepository<Recipe,Long> {
 
     @Query("select recipe from Recipe recipe where recipe.user.login = ?#{principal.username}")
     Page<Recipe> findByUserIsCurrentUser(Pageable pageable);
+
+    @Query("select recipe from Recipe recipe where recipe.visibility = 'public'")
+    Page<Recipe> findAllPublicRecipes(Pageable pageable);
 }

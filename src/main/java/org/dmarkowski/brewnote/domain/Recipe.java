@@ -44,6 +44,9 @@ public class Recipe implements Serializable {
     @Column(name = "volume")
     private Float volume;
 
+    @Column(name = "visibility")
+    private String visibility;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -196,6 +199,14 @@ public class Recipe implements Serializable {
 
     public void setAdditionals(Set<Additional> additionals) {
         this.additionals = additionals;
+    }
+
+    public String getVisibility() {
+        return visibility;
+    }
+
+    public void setVisibility(String visibility) {
+        this.visibility = visibility;
     }
 
     @Override

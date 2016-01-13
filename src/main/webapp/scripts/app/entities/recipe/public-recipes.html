@@ -1,15 +1,5 @@
 <div>
-    <h2>Moje warki</h2>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <button class="btn btn-primary" ui-sref="recipe.new">
-                    <span class="glyphicon glyphicon-flash"></span> <span>Dodaj nowy przepis</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
+    <h2>Publiczne przepisy</h2>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -17,6 +7,7 @@
                     <th>Nazwa</th>
                     <th>Styl</th>
                     <th>Data warzenia</th>
+                    <th>Autor</th>
                     <th></th>
                 </tr>
             </thead>
@@ -25,21 +16,12 @@
                     <td>{{recipe.name}}</td>
                     <td>{{recipe.style}}</td>
                     <td>{{recipe.date | date:'fullDate'}}</td>
+                    <td>{{recipe.userLogin}}</td>
                     <td>
                         <button type="submit"
                                 ui-sref="recipe.detail({id:recipe.id})"
                                 class="btn btn-info btn-sm">
                             <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> Zobacz</span>
-                        </button>
-                        <button type="submit"
-                                ui-sref="recipe.edit({id:recipe.id})"
-                                class="btn btn-primary btn-sm">
-                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Edytuj</span>
-                        </button>
-                        <button type="submit"
-                                ui-sref="recipe.delete({id:recipe.id})"
-                                class="btn btn-danger btn-sm">
-                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Usuń</span>
                         </button>
                     </td>
                 </tr>
