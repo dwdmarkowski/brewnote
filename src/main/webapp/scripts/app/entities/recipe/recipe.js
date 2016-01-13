@@ -33,6 +33,21 @@ angular.module('brewnoteApp')
                 },
                 resolve: {
                 }
+            }).state('friendsRecipes', {
+                parent: 'entity',
+                url: '/friendsRecipes',
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'FriendsRecipes'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/entities/recipe/friends-recipes.html',
+                        controller: 'FriendsRecipeController'
+                    }
+                },
+                resolve: {
+                }
             })
             .state('recipe.detail', {
                 parent: 'entity',

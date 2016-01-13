@@ -1,7 +1,9 @@
 package org.dmarkowski.brewnote.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import org.dmarkowski.brewnote.domain.Friendship;
 import org.dmarkowski.brewnote.domain.Recipe;
+import org.dmarkowski.brewnote.repository.FriendshipRepository;
 import org.dmarkowski.brewnote.repository.RecipeRepository;
 import org.dmarkowski.brewnote.repository.UserRepository;
 import org.dmarkowski.brewnote.security.SecurityUtils;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -47,6 +50,8 @@ public class RecipeResource {
     @Inject
     private UserRepository userRepository;
 
+    @Inject
+    private FriendshipRepository friendshipRepository;
     /**
      * POST  /recipes -> Create a new recipe.
      */
@@ -106,11 +111,34 @@ public class RecipeResource {
     @RequestMapping(value = "/publicRecipes",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
-    @Transactional(readOnly = true)
-    public ResponseEntity<List<RecipeDTO>> getAllPublicRecipes(Pageable pageable)
+         @Timed
+         @Transactional(readOnly = true)
+         public ResponseEntity<List<RecipeDTO>> getAllPublicRecipes(Pageable pageable)
         throws URISyntaxException {
         Page<Recipe> page = recipeRepository.findAllPublicRecipes(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/publicRecipes");
+        return new ResponseEntity<>(page.getContent().stream()
+            .map(recipeMapper::recipeToRecipeDTO)
+            .collect(Collectors.toCollection(LinkedList::new)), headers, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/friendsRecipes",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    @Transactional(readOnly = true)
+    public ResponseEntity<List<RecipeDTO>> getAllFriendsRecipes(Pageable pageable)
+        throws URISyntaxException {
+        List<Friendship> friendships = friendshipRepository.findAcceptedFriendshipsOnly();
+        List<String> friends = new ArrayList<String>();
+        friendships.forEach(friendship -> {
+            if (friendship.getFirstUser().getLogin().equals(SecurityUtils.getCurrentUser().getUsername())) {
+                friends.add(friendship.getSecondUser().getLogin());
+            } else {
+                friends.add(friendship.getFirstUser().getLogin());
+            }
+        });
+        Page<Recipe> page = recipeRepository.findAllFriendsRecipes(pageable, friends);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/publicRecipes");
         return new ResponseEntity<>(page.getContent().stream()
             .map(recipeMapper::recipeToRecipeDTO)
