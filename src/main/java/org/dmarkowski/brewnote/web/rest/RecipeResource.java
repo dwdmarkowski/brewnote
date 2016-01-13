@@ -52,6 +52,7 @@ public class RecipeResource {
 
     @Inject
     private FriendshipRepository friendshipRepository;
+
     /**
      * POST  /recipes -> Create a new recipe.
      */
@@ -111,9 +112,9 @@ public class RecipeResource {
     @RequestMapping(value = "/publicRecipes",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
-         @Timed
-         @Transactional(readOnly = true)
-         public ResponseEntity<List<RecipeDTO>> getAllPublicRecipes(Pageable pageable)
+    @Timed
+    @Transactional(readOnly = true)
+    public ResponseEntity<List<RecipeDTO>> getAllPublicRecipes(Pageable pageable)
         throws URISyntaxException {
         Page<Recipe> page = recipeRepository.findAllPublicRecipes(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/publicRecipes");
@@ -154,12 +155,25 @@ public class RecipeResource {
     @Timed
     public ResponseEntity<RecipeDTO> getRecipe(@PathVariable Long id) {
         log.debug("REST request to get Recipe : {}", id);
-        return Optional.ofNullable(recipeRepository.findOne(id))
-            .map(recipeMapper::recipeToRecipeDTO)
-            .map(recipeDTO -> new ResponseEntity<>(
-                recipeDTO,
-                HttpStatus.OK))
-            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        Recipe recipe = recipeRepository.findOne(id);
+        ResponseEntity responseEntity = null;
+        if (recipe.getVisibility().equals("private")) {
+            if (recipe.getUser().getLogin().equals(SecurityUtils.getCurrentUser().getUsername())) {
+                responseEntity = new ResponseEntity(recipeMapper.recipeToRecipeDTO(recipe), HttpStatus.OK);
+            } else {
+                responseEntity = new ResponseEntity(HttpStatus.NOT_FOUND);
+            }
+        } else if (recipe.getVisibility().equals("friends")) {
+            if (friendshipRepository.findAcceptedFriendship(userRepository.findOneByLogin(SecurityUtils.getCurrentUser()
+                .getUsername()).get().getId(), recipe.getUser().getId()) != null) {
+                responseEntity = new ResponseEntity(recipeMapper.recipeToRecipeDTO(recipe), HttpStatus.OK);
+            } else {
+                responseEntity = new ResponseEntity(HttpStatus.NOT_FOUND);
+            }
+        } else {
+            responseEntity = new ResponseEntity(recipeMapper.recipeToRecipeDTO(recipe), HttpStatus.OK);
+        }
+        return responseEntity;
     }
 
     /**

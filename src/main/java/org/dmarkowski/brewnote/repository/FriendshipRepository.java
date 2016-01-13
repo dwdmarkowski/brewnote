@@ -35,6 +35,12 @@ public interface FriendshipRepository extends JpaRepository<Friendship,Long> {
            "or (friendship.firstUser.id =:secondUserId and friendship.secondUser.id =:firstUserId and (friendship.status = 'Invitation' or friendship.status = 'Accepted'))")
     Friendship findExistingInvitationWithStatusAcceptedOrWaiting(@Param("firstUserId") Long firstUserId, @Param("secondUserId") Long secondUserId);
 
+    @Query("select friendship " +
+        "from Friendship friendship " +
+        "where (friendship.firstUser.id =:firstUserId and friendship.secondUser.id =:secondUserId and friendship.status = 'Accepted') " +
+        "or (friendship.firstUser.id =:secondUserId and friendship.secondUser.id =:firstUserId and friendship.status = 'Accepted')")
+    Friendship findAcceptedFriendship(@Param("firstUserId") Long firstUserId, @Param("secondUserId") Long secondUserId);
+
     @Query("select friendship from Friendship friendship where friendship.secondUser.login = ?#{principal.username} or friendship.firstUser.login = ?#{principal.username} and friendship.status = 'Accepted'")
     List<Friendship> findAcceptedFriendshipsOnly();
 }
