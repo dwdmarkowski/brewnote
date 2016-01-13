@@ -14,6 +14,7 @@ import org.dmarkowski.brewnote.web.rest.mapper.RecipeMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -141,6 +142,43 @@ public class RecipeResource {
         });
         Page<Recipe> page = recipeRepository.findAllFriendsRecipes(pageable, friends);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/publicRecipes");
+        return new ResponseEntity<>(page.getContent().stream()
+            .map(recipeMapper::recipeToRecipeDTO)
+            .collect(Collectors.toCollection(LinkedList::new)), headers, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/lastPublicRecipes",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    @Transactional(readOnly = true)
+    public ResponseEntity<List<RecipeDTO>> getLastPublicRecipes(Pageable pageable)
+        throws URISyntaxException {
+        Page<Recipe> page = recipeRepository.findLastPublicRecipes(new PageRequest(0, 5));
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/lastPublicRecipes");
+        return new ResponseEntity<>(page.getContent().stream()
+            .map(recipeMapper::recipeToRecipeDTO)
+            .collect(Collectors.toCollection(LinkedList::new)), headers, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/lastFriendsRecipes",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    @Transactional(readOnly = true)
+    public ResponseEntity<List<RecipeDTO>> getLastFriendsRecipes(Pageable pageable)
+        throws URISyntaxException {
+        List<Friendship> friendships = friendshipRepository.findAcceptedFriendshipsOnly();
+        List<String> friends = new ArrayList<String>();
+        friendships.forEach(friendship -> {
+            if (friendship.getFirstUser().getLogin().equals(SecurityUtils.getCurrentUser().getUsername())) {
+                friends.add(friendship.getSecondUser().getLogin());
+            } else {
+                friends.add(friendship.getFirstUser().getLogin());
+            }
+        });
+        Page<Recipe> page = recipeRepository.findAllFriendsRecipes(new PageRequest(0, 5), friends);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/lastFriendsRecipes");
         return new ResponseEntity<>(page.getContent().stream()
             .map(recipeMapper::recipeToRecipeDTO)
             .collect(Collectors.toCollection(LinkedList::new)), headers, HttpStatus.OK);

@@ -43,4 +43,9 @@ public interface FriendshipRepository extends JpaRepository<Friendship,Long> {
 
     @Query("select friendship from Friendship friendship where friendship.secondUser.login = ?#{principal.username} or friendship.firstUser.login = ?#{principal.username} and friendship.status = 'Accepted'")
     List<Friendship> findAcceptedFriendshipsOnly();
+
+    @Query("select count(friendship) " +
+        "from Friendship friendship " +
+        "where friendship.secondUser.login = ?#{principal.username} and friendship.status = 'Invitation'")
+    Integer getNotificationsAmount();
 }

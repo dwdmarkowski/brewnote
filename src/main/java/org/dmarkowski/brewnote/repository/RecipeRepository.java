@@ -21,7 +21,13 @@ public interface RecipeRepository extends JpaRepository<Recipe,Long> {
     @Query("select recipe from Recipe recipe where recipe.visibility = 'public'")
     Page<Recipe> findAllPublicRecipes(Pageable pageable);
 
+    @Query("select recipe from Recipe recipe where recipe.visibility = 'public' order by recipe.id desc")
+    Page<Recipe> findLastPublicRecipes(Pageable pageable);
+
     @Query("select recipe from Recipe recipe where recipe.visibility = 'friends' and recipe.user.login in :friends")
     Page<Recipe> findAllFriendsRecipes(Pageable pageable, @Param("friends") List<String> friends);
+
+    @Query("select recipe from Recipe recipe where recipe.visibility = 'friends' and recipe.user.login in :friends order by recipe.id desc")
+    Page<Recipe> findLastFriendsRecipes(@Param("friends") List<String> friends, Pageable pageable);
 
 }

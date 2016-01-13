@@ -105,6 +105,18 @@ public class FriendshipResource {
             .body(friendshipMapper.friendshipToFriendshipDTO(result));
     }
 
+
+    @RequestMapping(value = "/notificationsAmount",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    @Transactional(readOnly = true)
+    public Integer getNotificationsAmount()
+        throws URISyntaxException {
+        Integer notificationAmount = friendshipRepository.getNotificationsAmount();
+        return notificationAmount;
+    }
+
     /**
      * GET  /friendships -> get all the friendships.
      */

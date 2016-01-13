@@ -10,7 +10,56 @@
                 <div class="alert alert-success" ng-switch-when="true">
                     Jesteś zalogowany jako "{{account.login}}".
                 </div>
-
+                <div class="col-md-6" ng-switch-when="true">
+                    <h4>Ostatnie publiczne przepisy</h4>
+                </div>
+                <div class="col-md-6" ng-switch-when="true">
+                    <h4>Ostatnie przepisy znajomych</h4>
+                </div>
+                <table class="col-md-6" ng-switch-when="true">
+                    <thead>
+                    <tr>
+                        <th>Nazwa</th>
+                        <th>Styl</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="recipe in publicRecipes track by recipe.id">
+                        <td>{{recipe.name}}</td>
+                        <td>{{recipe.style}}</td>
+                        <td>
+                            <button type="submit"
+                                    ui-sref="recipe.detail({id:recipe.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> Zobacz</span>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="col-md-6" ng-switch-when="true">
+                    <thead>
+                    <tr>
+                        <th>Nazwa</th>
+                        <th>Styl</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="recipe in friendsRecipes track by recipe.id">
+                        <td>{{recipe.name}}</td>
+                        <td>{{recipe.style}}</td>
+                        <td>
+                            <button type="submit"
+                                    ui-sref="recipe.detail({id:recipe.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> Zobacz</span>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
                 <div class="alert alert-warning" ng-switch-when="false">
                     Nie masz jeszcze konta? <a class="alert-link" href="#/register">Zarejestruj się</a>
                 </div>
