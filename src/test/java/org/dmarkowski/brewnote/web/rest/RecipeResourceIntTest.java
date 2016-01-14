@@ -154,7 +154,7 @@ public class RecipeResourceIntTest {
                 .andExpect(jsonPath("$.[*].volume").value(hasItem(DEFAULT_VOLUME.doubleValue())));
     }*/
 
-    @Test
+/*    @Test
     @Transactional
     public void getRecipe() throws Exception {
         // Initialize the database
@@ -180,7 +180,7 @@ public class RecipeResourceIntTest {
         // Get the recipe
         restRecipeMockMvc.perform(get("/api/recipes/{id}", Long.MAX_VALUE))
                 .andExpect(status().isNotFound());
-    }
+    }*/
 
     @Test
     @Transactional

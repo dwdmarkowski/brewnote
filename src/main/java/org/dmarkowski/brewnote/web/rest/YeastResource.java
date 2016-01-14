@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -94,6 +95,21 @@ public class YeastResource {
         return new ResponseEntity<>(page.getContent().stream()
             .map(yeastMapper::yeastToYeastDTO)
             .collect(Collectors.toCollection(LinkedList::new)), headers, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/yeastsForRecipe/{recipeId}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    @Transactional(readOnly = true)
+    public ResponseEntity<List<YeastDTO>> getAllYeastsForRecipe(@PathVariable Long recipeId)
+        throws URISyntaxException {
+        List<Yeast> yeasts = yeastRepository.findAllForRecipe(recipeId);
+        List<YeastDTO> yeastsDTO = new ArrayList<YeastDTO>();
+        yeasts.forEach(yeast -> {
+            yeastsDTO.add(yeastMapper.yeastToYeastDTO(yeast));
+        });
+        return new ResponseEntity<List<YeastDTO>>(yeastsDTO, HttpStatus.OK);
     }
 
     /**
