@@ -40,6 +40,15 @@
                 </tr>
             </tbody>
         </table>
+        <tr>
+            <td>
+                <button type="submit"
+                        onclick="window.history.back()"
+                        class="btn btn-info">
+                    <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Wróć</span>
+                </button>
+            </td>
+        </tr>
         <nav>
             <ul class="pagination">
                 <li ng-show="links['first'] >= 0" ng-click="loadPage(links['first'])"><a>&lt;&lt;</a></li>

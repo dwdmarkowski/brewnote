@@ -1,11 +1,10 @@
 <div>
-    <h2>Additionals</h2>
-    <jh-alert></jh-alert>
+    <h2>Inne dodatki</h2>
     <div class="container">
         <div class="row">
             <div class="col-md-4">
                 <button class="btn btn-primary" ui-sref="additional.new">
-                    <span class="glyphicon glyphicon-flash"></span> <span>Create a new Additional</span>
+                    <span class="glyphicon glyphicon-flash"></span> <span>Dodaj nowy dodatek</span>
                 </button>
             </div>
         </div>
@@ -15,41 +14,39 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>recipe</th>
+                    <th>Nazwa</th>
+                    <th>Sposób dodania</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="additional in additionals track by additional.id">
-                    <td><a ui-sref="additional.detail({id:additional.id})">{{additional.id}}</a></td>
                     <td>{{additional.name}}</td>
                     <td>{{additional.description}}</td>
                     <td>
-                        <a ui-sref="recipe.detail({id:additional.recipeId})">{{additional.recipeName}}</a>
-                    </td>
-                    <td>
-                        <button type="submit"
-                                ui-sref="additional.detail({id:additional.id})"
-                                class="btn btn-info btn-sm">
-                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> View</span>
-                        </button>
                         <button type="submit"
                                 ui-sref="additional.edit({id:additional.id})"
                                 class="btn btn-primary btn-sm">
-                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Edit</span>
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Edytuj</span>
                         </button>
                         <button type="submit"
                                 ui-sref="additional.delete({id:additional.id})"
                                 class="btn btn-danger btn-sm">
-                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Delete</span>
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Usuń</span>
                         </button>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <tr>
+            <td>
+                <button type="submit"
+                        onclick="window.history.back()"
+                        class="btn btn-info">
+                    <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Wróć</span>
+                </button>
+            </td>
+        </tr>
         <nav>
             <ul class="pagination">
                 <li ng-show="links['first'] >= 0" ng-click="loadPage(links['first'])"><a>&lt;&lt;</a></li>
